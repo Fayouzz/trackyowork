@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --surface-2: #edeae3;
+    --border: #d8d2c5;
+    --text-primary: #211e1a;
+    --text-secondary: #756555;
+    --text-muted: #a09178;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --danger: #dc2626;
+    --success: #16a34a;
+  }
+
+  .dark {
+    --bg: #181614;
+    --surface: #211e1a;
+    --surface-2: #2d2924;
+    --border: #3d3530;
+    --text-primary: #f7f6f3;
+    --text-secondary: #bdb4a0;
+    --text-muted: #756555;
+    --accent: #fbbf24;
+    --accent-light: #292012;
+    --danger: #ef4444;
+    --success: #22c55e;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 active:scale-95;
+    background-color: var(--text-primary);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    opacity: 0.85;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 active:scale-95;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover {
+    background-color: var(--surface-2);
+    color: var(--text-primary);
+  }
+
+  .card {
+    @apply rounded-2xl p-6;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .nav-link {
+    @apply px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150;
+    color: var(--text-secondary);
+  }
+  .nav-link:hover, .nav-link.active {
+    color: var(--text-primary);
+    background-color: var(--surface-2);
+  }
+  .nav-link.active {
+    color: var(--text-primary);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Timer ring animation */
+@keyframes ring-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.ring-active { animation: ring-pulse 2s ease-in-out infinite; }
+
+/* Score bar fill animation */
+@keyframes fill-bar {
+  from { width: 0; }
+  to { width: var(--target-width); }
+}
+.score-bar-fill {
+  animation: fill-bar 1s ease-out forwards;
+}
